@@ -1,2 +1,2 @@
-# dsc106-sp24
-Public course materials for DSC 106 in Spring 2024.
+# DSC 106 SP24 Website
+Temporary site holder

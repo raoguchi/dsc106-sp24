@@ -12,7 +12,7 @@ Object.keys(movies).length);
         !movie.genres.includes("Family") &&
         !movie.genres.includes('Animated') &&
          movie.cast.includes("Jim Carrey"));
-    populateMovies(jimCarrey, "Jim Carrey Movies");
+    populateMovies(jimCarrey, "Serious Side of Jim Carrey");
     console.table(jimCarrey, 'title');
 
     console.log("Num movies Paris in Title: ",

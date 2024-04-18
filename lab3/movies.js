@@ -13,7 +13,51 @@ Object.keys(movies).length);
         !movie.genres.includes('Animated') &&
          movie.cast.includes("Jim Carrey"));
     populateMovies(jimCarrey, "Jim Carrey Movies");
-    console.table(jimCarrey, 'title')
+    console.table(jimCarrey, 'title');
+
+    console.log("Num movies Paris in Title: ",
+Object.keys(movies).length);
+    let cdg = movies.filter(movie =>
+        movie.title.includes("Paris"));
+    console.table(cdg.length);
+
+    console.log("Num movies London in Title: ",
+Object.keys(movies).length);
+    let lhr = movies.filter(movie =>
+        movie.title.includes("London"));
+    console.log(lhr.length);
+
+    console.log("Num movies New York in Title: ",
+Object.keys(movies).length);
+    let nyc = movies.filter(movie =>
+        movie.title.includes("New York"));
+    console.log(nyc.length);
+
+    console.log("DR or RF Movies", 
+Object.keys(movies).length);
+    let dr_rf = movies.filter(movie =>
+        (movie.cast.includes("Daniel Radcliffe") &&
+        !movie.cast.includes("Ralph Fiennes")) ||
+        (!movie.cast.includes("Daniel Radcliffe") &&
+        movie.cast.includes("Ralph Fiennes")));
+    populateMovies(dr_rf, "DR or RF Movies");
+    console.table(dr_rf, "title");
+
+    console.log("Total Adventure or Action Movies:",
+Object.keys(movies).length);
+    let tallys = {};
+    movies.forEach(movie => {
+        const decade = Math.floor(movie.year / 10) * 10;
+        if (!tallys[decade]) {
+            tallys[decade] = 0;
+        }
+        if (movie.title.includes("Adventure") || movie.title.includes("Exploration")) {
+            tallys[decade]++;
+        }
+    });
+
+    console.log(tallys)
+
 }
 populate();
 

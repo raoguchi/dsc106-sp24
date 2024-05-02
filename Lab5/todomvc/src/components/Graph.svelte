@@ -52,18 +52,24 @@
 					endAngle: data.endAngle
 				})}
 				fill={index === hovered ? "brown": arc_color(index)}
-				on:mouseover={(event) => { hovered = index;
-					recorded_mouse_position = {
-							x: event.pageX,
-							y: event.pageY
-						}
-				 }}
-				on:mouseout={(event) => { hovered = -1; }}
-
-
+				on:mouseover={(event) => {
+								hovered = index;
+								recorded_mouse_position = {
+									x: event.pageX,
+									y: event.pageY
+									}
+				 			}}
+							on:mouseout={(event) => { hovered = -1; }}
 			/>
+				<text
+					x={arcGenerator.centroid(data)[0]}
+					y={arcGenerator.centroid(data)[1]}
+					text-anchor = "middle"
+					alignment-baseline="middle"
+				>
+					{data.data[0]}	
+				</text>
 			{/each}
-
 		</g>
 	</svg>
 	<div

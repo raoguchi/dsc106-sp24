@@ -6,6 +6,7 @@
   import Temperature02Channels from './Temperature02Channels.svelte';
   import Temperature03Axes from './Temperature03Axes.svelte';
   import Temperature04Interactive from './Temperature04Interactive.svelte';
+  import ToDo from "./ToDo.svelte"
 
   let data = [];
 

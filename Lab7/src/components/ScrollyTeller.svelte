@@ -1,6 +1,70 @@
 <script>
+  import Scroller from "@sveltejs/svelte-scroller";
+  import Map from "./Map.svelte";
+  import { geoMercator } from "d3-geo";
+  import Graph from "./Graph.svelte";
 
+  let count, index, offset, progress;
+  let width, height;
+
+  let geoJsonToFit = {
+    type: "FeatureCollection",
+    features: [
+      {
+        type: "Feature",
+        geometry: {
+          type: "Point",
+          coordinates: [1,0],
+        },
+      },
+      {
+        type: "Feature",
+        geometry: {
+          type: "Point",
+          coordinates: [0,1],
+        },
+      },
+    ],
+  };
+
+  $: projection = geoMercator().fitSize([width, height], geoJsonToFit);
 </script>
+
+<Scroller
+  top={0.0}
+  bottom={1}
+  threshold={0.5}
+  bind:count
+  bind:index
+  bind:offset
+  bind:progress
+>
+  <div 
+      class="background"
+      slot="background"
+      bind:clientWidth={width}
+      bind:clientHeight={height}
+  >
+    <Map bind:geoJsonToFit {index}/>
+    <Graph {index} {width} {height} {projection} />
+      <div class="prograss-bars">
+        <p>current section: <strong>{index + 1} / {count}</strong></p>
+        <progress value={count ? (index + 1) / count : 0} />
+
+        <p>offset in current section</p>
+        <progress value={offset || 0}/>
+      </div>
+  </div>
+
+  <div class="foreground" slot="foreground">
+    <section>This is the first section.</section>
+    <section>This is the second section.</section>
+    <section>This is the third section.</section>
+    <section>This is the fourth section.</section>
+    <section>This is the fifth section.</section>
+    <section>This is the sixth section.</section>
+  </div>
+</Scroller>
 
 <style>
   .background {
